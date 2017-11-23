@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Jest", // This is the configuration name you will see in debug sidebar
+      "type": "node",
+      "request": "launch",
+      "port": 5858,
+      "address": "localhost",
+      "stopOnEntry": false,
+      "env": {
+          "NODE_ENV": "production" // You can setup here any env vars you 
+      },
+      "runtimeArgs": [
+          "--inspect-brk=5858",
+          "./node_modules/.bin/jest", // Path to Jest
+          "-i"
+      ],
+      "cwd": "${workspaceRoot}"
+    },
+    {
+      "name": "Deploy",
+      "type": "node",
+      "request": "launch",
+      "port": 5858,
+      "address": "localhost",
+      "stopOnEntry": true,
+      "runtimeArgs": [
+        "--inspect-brk=5858",
+        "./scripts/deploy.js",
+        "-i"
+      ],
+      "cwd": "${workspaceRoot}"
+    }
+  ]
+}

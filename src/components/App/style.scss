@@ -1,0 +1,45 @@
+:local {
+  .app-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+  }
+
+  .lists-container {
+    padding: 1rem;
+    padding-right: 0;
+    display: flex;
+    flex-grow: 1;
+    overflow-x: scroll;
+  }
+
+  .lists {
+    display: flex;
+  }
+
+  .list {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-right:8px;
+    padding: 4px;
+    background-color: #DDDDDD;
+  }
+
+  .list-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .new-input {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+:global {
+  body {
+    margin: 0;
+  }
+}
