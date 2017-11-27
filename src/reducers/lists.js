@@ -5,9 +5,17 @@ import {
   SET_LIST_NAME,
   REMOVE_LIST,
   SET_NEW_LIST_NAME,
+  SET_NEW_ITEM_NAME,
+  SET_NEW_ITEM_DESCRIPTION,
 } from 'actions/listActions';
 
-import TodoList from 'records/TodoList';
+import {
+  ADD_ITEM_TO_LIST,
+  REMOVE_ITEM_FROM_LIST,
+} from 'actions/itemActions';
+
+import TodoListRecord from 'records/TodoListRecord';
+import TodoItemRecord from 'records/TodoItemRecord';
 
 const initialState = Immutable.Map({
   lists: new Immutable.List(),
@@ -23,7 +31,7 @@ const lists = (state = initialState, action) => {
         s.get('newListName')
         && !s.get('lists').find(list => list.name === s.get('newListName'))
       ) {
-        s.set('lists', s.get('lists').push(new TodoList({ name: s.get('newListName') })));
+        s.set('lists', s.get('lists').push(new TodoListRecord({ name: s.get('newListName') })));
         s.set('newListName', '');
       }
     });
@@ -36,6 +44,42 @@ const lists = (state = initialState, action) => {
 
   case SET_NEW_LIST_NAME:
     return state.set('newListName', action.name);
+
+  case ADD_ITEM_TO_LIST:
+    return state.withMutations(s => {
+      const newItemName = s.getIn(['lists', action.listIndex, 'newItemName']);
+      if (
+        newItemName
+        && !s.getIn(['lists', action.listIndex, 'items']).find(item => item.name === newItemName)
+      ) {
+        s.setIn(['lists', action.listIndex, 'items'],
+          s.getIn(['lists', action.listIndex, 'items']).push(
+            new TodoItemRecord({
+              name: newItemName,
+              description: s.getIn(['lists', action.listIndex, 'newItemDescription']),
+            })
+          )
+        );
+        s.setIn(['lists', action.listIndex, 'newItemName'], '');
+        s.setIn(['lists', action.listIndex, 'newItemDescription'], '');
+      }
+    });
+
+  case REMOVE_ITEM_FROM_LIST:
+    return state.withMutations(s => {
+      s.setIn(
+        ['lists', action.listIndex, 'items'],
+        s.getIn(['lists', action.listIndex, 'items']).delete(
+          action.itemIndex
+        )
+      );
+    });
+
+  case SET_NEW_ITEM_NAME:
+    return state.setIn(['lists', action.listIndex, 'newItemName'], action.name);
+
+  case SET_NEW_ITEM_DESCRIPTION:
+    return state.setIn(['lists', action.listIndex, 'newItemDescription'], action.description);
 
   default:
     return state;

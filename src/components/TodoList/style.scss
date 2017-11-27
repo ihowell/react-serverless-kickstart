@@ -1,0 +1,28 @@
+:local {
+  .list {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-right:8px;
+    padding: 4px;
+    background-color: #DDDDDD;
+  }
+
+  .list-title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+
+  .new-input {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+:global {
+  body {
+    margin: 0;
+  }
+}

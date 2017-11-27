@@ -1,8 +1,8 @@
 import { Record } from 'immutable';
 
-const TodoItem = Record({
+const TodoItemRecord = Record({
   name: '',
   description: '',
 });
 
-export default TodoItem;
+export default TodoItemRecord;

@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import TodoListContainer from 'containers/TodoListContainer';
+
 import styles from './style.scss';
 
 export default class App extends PureComponent {
@@ -40,31 +42,11 @@ export default class App extends PureComponent {
           <div className={styles['lists']}>
             {
               this.props.lists.map((list, listIndex) => (
-                <div
+                <TodoListContainer
                   key={`list-${list.name}`}
-                  className={styles['list']}
-                >
-                  <div className={styles['list-title']}>
-                    {list.name}
-                    <button
-                      onClick={() => this.onRemoveList(listIndex)}
-                    >
-                      Remove list
-                    </button>
-                  </div>
-                  {
-                    list.items.map(item => (
-                      <div key={`list-${list.name}-item-${item.name}`}>
-                        <div>
-                          {item.name}
-                        </div>
-                        <div>
-                          {item.description}
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
+                  list={list}
+                  listIndex={listIndex}
+                />
               ))
             }
           </div>

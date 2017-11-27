@@ -1,0 +1,17 @@
+:local {
+  .item {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: 1px solid black;
+    padding: 2px;
+  }
+
+  .item-title-bar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .remove-item {
+    cursor: pointer;
+  }
+}
