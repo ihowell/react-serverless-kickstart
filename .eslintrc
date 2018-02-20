@@ -8,8 +8,7 @@
       "objects": "always-multiline",
       "imports": "always-multiline",
       "exports": "always-multiline",
-      "functions": "ignore",
-      "indent": [2, 2]
+      "functions": "ignore"
     }],
     "class-methods-use-this": ["off"],
     "import/extensions": ["off", "never"],
@@ -30,17 +29,21 @@
     "dot-notation": ["off"],
     "import/no-extraneous-dependencies": ["off"],
     "react/prefer-stateless-function": ["off"],
-    "no-lonely-if": ["off"]
+    "no-lonely-if": ["off"],
+    "quote-props": ["off"],
+    "jsx-a11y/label-has-for": ["off"]
   },
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "webpack.common.js"
+        "config": "config/webpack.config.js"
       }
     }
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true,
+    "jquery": true
   }
 }
